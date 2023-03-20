@@ -6,12 +6,11 @@ export default StyleSheet.create({
     fontWeight: '600',
     width: '100%',
     backgroundColor: 'white',
-    padding: 10,
+    padding: 14,
     borderRadius: 20,
   },
-  searchSection: {
-    display: 'flex',
+  search_section: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 60,
   },
 });

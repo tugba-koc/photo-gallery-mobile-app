@@ -15,7 +15,7 @@ export default StyleSheet.create({
     padding: 6,
   },
   title: {
-    fontWeight: 500,
+    fontWeight: '500',
     fontSize: 14,
     marginTop: 5,
   },
@@ -40,6 +40,6 @@ export default StyleSheet.create({
     fontSize: 14,
     marginTop: 4,
     color: '#fa8c16',
-    fontWeight: 600,
+    fontWeight: '600',
   },
 });

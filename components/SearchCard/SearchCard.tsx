@@ -10,17 +10,16 @@ type Props = {
 const dimension = Dimensions.get('screen');
 
 const SearchCard = (props: Props) => {
-  const {item} = props;
+  const {item, navigation} = props;
 
   return (
     <View style={styles.image_container_style}>
       <TouchableOpacity
-      /*         onPress={() =>
-            navigation.navigate('Detail', {
-              movieItem: itemData,
-            })
-          } */
-      >
+        onPress={() =>
+          navigation.navigate('Detail', {
+            cardItem: item,
+          })
+        }>
         <Image
           resizeMode="cover"
           // eslint-disable-next-line react-native/no-inline-styles

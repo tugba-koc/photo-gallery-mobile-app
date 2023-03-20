@@ -1,4 +1,4 @@
-import {View, TextInput, Text} from 'react-native';
+import {View, TextInput, Text, SafeAreaView} from 'react-native';
 import styles from './Header.style';
 import React, {useState} from 'react';
 
@@ -6,13 +6,15 @@ const Header = () => {
   const [searchText, setSearchText] = useState('');
 
   return (
-    <View style={styles.searchSection}>
-      <TextInput
-        onChangeText={value => setSearchText(value)}
-        style={styles.input}
-        placeholder="Ürün ara"
-      />
-    </View>
+    <SafeAreaView>
+      <View style={styles.search_section}>
+        <TextInput
+          onChangeText={value => setSearchText(value)}
+          style={styles.input}
+          placeholder="Ürün ara"
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 

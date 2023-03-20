@@ -7,7 +7,7 @@ import SearchCard from '../SearchCard/SearchCard';
 import Error from '../Error/Error';
 import styles from './SearchList.style';
 
-const SearchList = () => {
+const SearchList = ({navigation}) => {
   const dispatch = useDispatch();
   const [filteredList, setFilteredList] = useState([]);
 
@@ -33,7 +33,9 @@ const SearchList = () => {
         numColumns="2"
         data={items}
         keyExtractor={(item, index) => index}
-        renderItem={({item}) => <SearchCard item={item.data} />}
+        renderItem={({item}) => (
+          <SearchCard item={item.data} navigation={navigation} />
+        )}
       />
     </View>
   );
