@@ -1,22 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {View} from 'react-native';
+import Header from './components/Header/Header';
+import styles from './App.style';
+import SearchList from './components/SearchList/SearchList';
+import store from './redux/store';
+import {Provider} from 'react-redux';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
-          <Text>test</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <Header />
+        <SearchList />
+      </View>
+    </Provider>
   );
 }
 
