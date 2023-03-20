@@ -1,5 +1,5 @@
 import {
-  GET_ITEM_REQUESTED,
+  GET_ITEM_REQUEST,
   GET_ITEM_SUCCESS,
   GET_ITEM_FAILURE,
 } from '../actions/actionType';
@@ -12,7 +12,7 @@ const initialState = {
 
 export default function items(state = initialState, action) {
   switch (action.type) {
-    case GET_ITEM_REQUESTED:
+    case GET_ITEM_REQUEST:
       return {
         ...state,
         loading: true,
