@@ -13,7 +13,7 @@ export interface ResponseGenerator {
 
 function* getItemSaga() {
   try {
-    const URL = 'https://www.reddit.com/r/bag/top.json';
+    const URL = 'https://www.reddit.com/r/shoes/top.json';
     const response = yield fetch(URL).then(res => res.json());
     yield put(getItemSuccess({items: response?.data?.children}));
   } catch (e) {
