@@ -1,4 +1,4 @@
-import {View, TextInput, Text, SafeAreaView} from 'react-native';
+import {View, TextInput, SafeAreaView} from 'react-native';
 import styles from './Header.style';
 import React, {useState} from 'react';
 

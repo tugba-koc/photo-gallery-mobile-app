@@ -45,17 +45,18 @@ const SearchCard = (props: Props) => {
                   resizeMode="cover"
                   // eslint-disable-next-line react-native/no-inline-styles
                   style={{
-                    height: 10,
-                    width: 10,
+                    height: 12,
+                    width: 12,
                   }}
                   source={require('../../assets/images/star.png')}
                 />
                 <Text style={styles.score}>{item.score} point</Text>
               </View>
-
-              <Text style={styles.num_comment}>
-                ({item.num_comments} comment)
-              </Text>
+              {item.num_comments === 0 ? null : (
+                <Text style={styles.num_comment}>
+                  ({item.num_comments} comment)
+                </Text>
+              )}
             </View>
             <Text style={styles.amount}>{item.pwls} $</Text>
           </View>
