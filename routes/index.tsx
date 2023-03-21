@@ -3,6 +3,7 @@ import Home from '../screens/Home/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Detail from '../screens/Detail/Detail';
+import Search from '../screens/Search/Search';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,11 @@ const Routes = () => {
           options={{headerShown: false}}
           name="Detail"
           component={Detail}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Search"
+          component={Search}
         />
       </Stack.Navigator>
     </NavigationContainer>
