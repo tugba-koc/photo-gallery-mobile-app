@@ -12,11 +12,10 @@ const SlideItem = (props: Props) => {
   const {img_url} = props;
 
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
     <View style={{width, height: height / 2.5, alignItems: 'center'}}>
       <Image
         resizeMode="contain"
-        style={{width: width, height: height / 2.5}}
+        style={{width, height: height / 2.5}}
         source={{
           uri: `${img_url}`,
         }}

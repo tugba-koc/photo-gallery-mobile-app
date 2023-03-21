@@ -22,7 +22,6 @@ const SearchCard = (props: Props) => {
         }>
         <Image
           resizeMode="cover"
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             height: dimension.height / 5,
             width: '100%',
@@ -43,7 +42,6 @@ const SearchCard = (props: Props) => {
               <View style={styles.score_container}>
                 <Image
                   resizeMode="cover"
-                  // eslint-disable-next-line react-native/no-inline-styles
                   style={{
                     height: 12,
                     width: 12,

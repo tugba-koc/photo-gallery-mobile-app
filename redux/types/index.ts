@@ -2,6 +2,7 @@ import {
   GET_ITEM_REQUEST,
   GET_ITEM_SUCCESS,
   GET_ITEM_FAILURE,
+  GET_ITEM_FILTER,
 } from '../actions/actionType';
 
 export interface Item {
@@ -128,6 +129,10 @@ export interface GetItemFailurePayload {
   error: string;
 }
 
+export interface GetItemFilterPayload {
+  query: string;
+}
+
 export interface GetItemRequest {
   type: typeof GET_ITEM_REQUEST;
 }
@@ -140,4 +145,9 @@ export interface GetItemSuccess {
 export interface GetItemFailure {
   type: typeof GET_ITEM_FAILURE;
   payload: GetItemFailurePayload;
+}
+
+export interface GetItemFilter {
+  type: typeof GET_ITEM_FILTER;
+  payload: GetItemFilterPayload;
 }

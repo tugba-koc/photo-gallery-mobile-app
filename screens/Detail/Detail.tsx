@@ -1,19 +1,18 @@
 import {
   Text,
-  SafeAreaView,
   TouchableOpacity,
   View,
   Image,
   FlatList,
   ScrollView,
-  Pressable,
 } from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import React, {useState} from 'react';
-import Header from '../../components/Header/Header';
 import styles from './Detail.style';
 import {DETAIL_IMAGES, ITEM_DESC} from '../../constants';
 import SlideItem from '../../components/SlideItem/SlideItem';
 import AddToCart from '../../components/AddToCart/AddToCart';
+import HeaderWBackButton from '../../components/HeaderWithBackButton/HeaderWBackButton';
 
 const Detail = ({route, navigation}) => {
   const {cardItem} = route.params;
@@ -21,28 +20,14 @@ const Detail = ({route, navigation}) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <SafeAreaView style={{height: '100%'}}>
+    <SafeAreaView style={{height: '100%', backgroundColor: '#EAEAEA'}}>
       <AddToCart price={cardItem.pwls} />
       <ScrollView style={styles.container}>
         {/* Header */}
-        <View style={styles.header_container}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image
-              resizeMode="cover"
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                height: 24,
-                width: 24,
-              }}
-              source={require('../../assets/images/back.png')}
-            />
-          </TouchableOpacity>
-          <Header />
-        </View>
+        <HeaderWBackButton navigation={navigation} />
 
         {/* Heart */}
         <View
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             position: 'relative',
             marginLeft: 'auto',
@@ -52,7 +37,6 @@ const Detail = ({route, navigation}) => {
           <TouchableOpacity onPress={() => setIsLiked(!isLiked)}>
             <Image
               resizeMode="contain"
-              // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 height: 24,
                 width: 24,
@@ -84,7 +68,6 @@ const Detail = ({route, navigation}) => {
               <View style={styles.score_container}>
                 <Image
                   resizeMode="cover"
-                  // eslint-disable-next-line react-native/no-inline-styles
                   style={{
                     height: 14,
                     width: 14,

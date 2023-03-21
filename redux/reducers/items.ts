@@ -2,10 +2,13 @@ import {
   GET_ITEM_REQUEST,
   GET_ITEM_SUCCESS,
   GET_ITEM_FAILURE,
+  GET_ITEM_FILTER,
 } from '../actions/actionType';
 
 const initialState = {
   items: [],
+  filteredItems: [],
+  searchQuery: '',
   loading: false,
   error: null,
 };
@@ -28,6 +31,17 @@ export default function items(state = initialState, action) {
         ...state,
         loading: false,
         error: action.error,
+      };
+    case GET_ITEM_FILTER:
+      return {
+        ...state,
+        loading: false,
+        searchQuery: action.payload.query,
+        filteredItems: state.items?.filter(item =>
+          item?.data?.title
+            ?.toLowerCase()
+            .includes(action.payload.query.toLowerCase()),
+        ),
       };
     default:
       return state;

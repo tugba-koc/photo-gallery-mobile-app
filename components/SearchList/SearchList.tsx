@@ -1,42 +1,53 @@
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectError, selectItems, selectLoading} from '../../redux/selectors';
+import {
+  selectError,
+  selectFilteredItems,
+  selectItems,
+  selectLoading,
+  selectSearchQuery,
+} from '../../redux/selectors';
 import {getItemRequest} from '../../redux/actions';
 import SearchCard from '../SearchCard/SearchCard';
 import Error from '../Error/Error';
 import styles from './SearchList.style';
+import NoContent from '../NoContent/NoContent';
 
-const SearchList = ({navigation}) => {
+const SearchList = ({navigation, isLoaded}) => {
   const dispatch = useDispatch();
-  const [filteredList, setFilteredList] = useState([]);
 
   const items = useSelector(selectItems);
+  const filteredItems = useSelector(selectFilteredItems);
+  const searchQuery = useSelector(selectSearchQuery);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
   React.useEffect(() => {
     dispatch(getItemRequest());
-    setFilteredList(items);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (error) {
     return <Error error={error} />;
-  }
-  if (loading) {
-    return <ActivityIndicator size="large" color="#fa8c16" />;
+  } else if (searchQuery && filteredItems.length === 0) {
+    return <NoContent />;
   }
   return (
     <View style={styles.container}>
-      <FlatList
-        numColumns="2"
-        data={items}
-        keyExtractor={(item, index) => index}
-        renderItem={({item}) => (
-          <SearchCard item={item.data} navigation={navigation} />
-        )}
-      />
+      {!isLoaded || loading ? (
+        <ActivityIndicator size="large" color="#fa8c16" />
+      ) : (
+        <FlatList
+          numColumns="2"
+          // the design should be like search text is available or not
+          data={searchQuery ? filteredItems : items}
+          keyExtractor={(item, index) => index}
+          renderItem={({item}) => (
+            <SearchCard item={item.data} navigation={navigation} />
+          )}
+        />
+      )}
     </View>
   );
 };
