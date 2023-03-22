@@ -9,7 +9,6 @@ export default StyleSheet.create({
   last_search_container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 16,
   },
   last_search: {
     fontSize: 16,

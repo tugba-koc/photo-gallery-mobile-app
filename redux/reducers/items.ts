@@ -4,16 +4,20 @@ import {
   GET_ITEM_FAILURE,
   GET_ITEM_FILTER,
 } from '../actions/actionType';
+import {v4 as uuidv4} from 'uuid';
 
 const initialState = {
   items: [],
   filteredItems: [],
   searchQuery: '',
+  searchQueryList: [],
   loading: false,
   error: null,
 };
 
 export default function items(state = initialState, action) {
+  console.log('action.payload.query', action.payload);
+
   switch (action.type) {
     case GET_ITEM_REQUEST:
       return {
@@ -37,6 +41,10 @@ export default function items(state = initialState, action) {
         ...state,
         loading: false,
         searchQuery: action.payload.query,
+        searchQueryList: [
+          ...state.searchQueryList,
+          {item: action.payload.query, id: uuidv4()},
+        ],
         filteredItems: state.items?.filter(item =>
           item?.data?.title
             ?.toLowerCase()

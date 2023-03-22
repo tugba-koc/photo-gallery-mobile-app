@@ -2,12 +2,7 @@ import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import styles from './HeaderWBackButton.style';
 
-const HeaderWBackButton = ({navigation}) => {
-  const [bordered, setBordered] = useState(true);
-  const pressOut = () => {
-    setBordered(false);
-    navigation.navigate('Search');
-  };
+const HeaderWBackButton = ({navigation, pressOut, bordered}) => {
   return (
     <View style={styles.header_container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>

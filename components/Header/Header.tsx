@@ -27,14 +27,16 @@ const Header = (props: Props) => {
   }, [dispatch, searchText, setIsLoaded]);
 
   const handleChange = (val: string) => {
-    setSearchText(val);
+    if (val.length !== 0) {
+      setSearchText(val);
+    }
   };
 
   return (
     <SafeAreaView>
       <View style={styles.search_section}>
         <TextInput
-          onChangeText={value => handleChange(value)}
+          onChangeText={value => handleChange(value.trim())}
           style={styles.input}
           placeholder="Ürün ara"
         />
