@@ -3,6 +3,7 @@ import {
   GET_ITEM_SUCCESS,
   GET_ITEM_FAILURE,
   GET_ITEM_FILTER,
+  REMOVE_SEARCH_QUERY_LIST,
 } from '../actions/actionType';
 
 export interface Item {
@@ -150,4 +151,8 @@ export interface GetItemFailure {
 export interface GetItemFilter {
   type: typeof GET_ITEM_FILTER;
   payload: GetItemFilterPayload;
+}
+
+export interface RemoveSearchQueryList {
+  type: typeof REMOVE_SEARCH_QUERY_LIST;
 }

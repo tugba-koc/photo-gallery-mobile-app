@@ -1,30 +1,94 @@
-import {View, Text, SectionList, FlatList} from 'react-native';
+import {View, Text, Modal, Button, Pressable} from 'react-native';
 import styles from './Search.style';
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {useSelector} from 'react-redux';
-import {selectSearchQueryList} from '../../redux/selectors';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectLastSearchItemsWithText} from '../../redux/reducers/items';
+import {removeSearchQueryList} from '../../redux/actions';
 
-const Search = () => {
-  const searchQueryList = useSelector(selectSearchQueryList);
+const Search = ({navigation}) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const dispatch = useDispatch();
+  const searchQueryList = useSelector(state =>
+    selectLastSearchItemsWithText(state),
+  );
 
   return (
-    <SafeAreaView style={{height: '100%', backgroundColor: '#EAEAEA'}}>
-      <View style={styles.container}>
-        <View style={styles.last_search_container}>
-          <Text style={styles.last_search}>Last search</Text>
-          <Text style={styles.clean}>Clean</Text>
-        </View>
-        {searchQueryList.slice(1, 6).map((el, index) => (
-          <View key={index} style={styles.item}>
-            <Text style={styles.title}>{el.item}</Text>
+    <>
+      {/* Modal Start */}
+      <View style={styles.centered_view}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={isModalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setIsModalVisible(!isModalVisible);
+          }}>
+          <View style={styles.modal_content}>
+            <View style={styles.modal_view}>
+              <Text style={styles.modal_title}>PhotoGallery</Text>
+              <Text style={styles.modal_text}>
+                Are you sure to remove all searches?
+              </Text>
+              <View style={styles.button_container}>
+                <Pressable
+                  style={[styles.button, styles.button_close]}
+                  onPress={() => setIsModalVisible(!isModalVisible)}>
+                  <Text style={styles.text_style}>CANCEL</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.button_close]}
+                  onPress={() => {
+                    dispatch(removeSearchQueryList());
+                    setIsModalVisible(!isModalVisible);
+                  }}>
+                  <Text style={styles.text_style}>REMOVE ALL</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
-        ))}
-        {searchQueryList.length > 5 ? (
-          <Text style={styles.title}>...</Text>
-        ) : null}
+        </Modal>
       </View>
-    </SafeAreaView>
+      {/* Modal End */}
+      <SafeAreaView style={styles.container}>
+        <View style={styles.wrapper}>
+          <View style={styles.last_search_container}>
+            <Text style={styles.last_search}>Last search</Text>
+            {searchQueryList.length ? (
+              <Text
+                onPress={() => setIsModalVisible(true)}
+                style={styles.clean}>
+                Clean
+              </Text>
+            ) : null}
+          </View>
+          {searchQueryList.slice(0, 5).map((el, index) => (
+            <View key={index} style={styles.item}>
+              <Text
+                onPress={() =>
+                  navigation.navigate('Home', {
+                    search: el,
+                  })
+                }
+                style={styles.title}>
+                {el}
+              </Text>
+            </View>
+          ))}
+          {searchQueryList.length > 5 ? (
+            <View style={styles.item}>
+              <Text style={styles.title}>...</Text>
+            </View>
+          ) : null}
+          {!searchQueryList.length && (
+            <Text style={styles.no_search}>
+              You didnt search anything up to now. Let's try!
+            </Text>
+          )}
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 

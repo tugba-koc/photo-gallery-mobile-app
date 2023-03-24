@@ -5,12 +5,14 @@ import {
   GetItemSuccess,
   GetItemFailure,
   GetItemFilter,
+  RemoveSearchQueryList,
 } from '../types';
 import {
   GET_ITEM_FAILURE,
   GET_ITEM_REQUEST,
   GET_ITEM_SUCCESS,
   GET_ITEM_FILTER,
+  REMOVE_SEARCH_QUERY_LIST,
 } from './actionType';
 
 export const getItemRequest = (): GetItemRequest => ({
@@ -36,4 +38,8 @@ export const getItemFilter = (
 ): GetItemFilter => ({
   type: GET_ITEM_FILTER,
   payload,
+});
+
+export const removeSearchQueryList = (): RemoveSearchQueryList => ({
+  type: REMOVE_SEARCH_QUERY_LIST,
 });
