@@ -20,10 +20,10 @@ const {width} = Dimensions.get('screen');
 
 const Detail = ({route, navigation}) => {
   const {cardItem} = route.params;
-  const [readMore, setReadMore] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isShownDetailScreen, setIsShownDetailScreen] = useState(true);
+  const [readMore, setReadMore] = useState<boolean>(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isShownDetailScreen, setIsShownDetailScreen] = useState<boolean>(true);
 
   const pressOut = () => {
     setIsShownDetailScreen(false);

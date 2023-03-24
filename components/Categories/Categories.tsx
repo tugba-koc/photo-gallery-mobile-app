@@ -4,7 +4,8 @@ import {CATEGORIES} from '../../constants';
 import styles from './Categories.style';
 
 const Categories = () => {
-  const [pressed, setPressed] = useState(false);
+  const [pressed, setPressed] = useState<boolean>(false);
+
   return (
     <View style={styles.container}>
       <FlatList

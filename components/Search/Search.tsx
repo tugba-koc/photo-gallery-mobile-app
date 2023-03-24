@@ -70,8 +70,7 @@ const Search = ({navigation}) => {
                   navigation.navigate('Home', {
                     search: el,
                   })
-                }
-                style={styles.title}>
+                }>
                 {el}
               </Text>
             </View>

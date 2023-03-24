@@ -6,7 +6,7 @@ import styles from './Home.style';
 import Categories from '../../components/Categories/Categories';
 
 const Home = ({navigation, route}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   let search;
   if (route.params) {
