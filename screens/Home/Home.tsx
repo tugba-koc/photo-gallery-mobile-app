@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Header from '../../components/Header/Header';
 import SearchList from '../../components/SearchList/SearchList';
 import styles from './Home.style';
+import Categories from '../../components/Categories/Categories';
 
 const Home = ({navigation, route}) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,6 +16,7 @@ const Home = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <Header searchDirected={search} setIsLoaded={setIsLoaded} />
+      <Categories />
       <SearchList
         searchDirected={search}
         isLoaded={isLoaded}
