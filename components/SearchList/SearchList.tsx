@@ -1,5 +1,5 @@
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   selectError,
@@ -8,13 +8,13 @@ import {
   selectLoading,
   selectSearchQuery,
 } from '../../redux/selectors';
-import {getItemRequest} from '../../redux/actions';
+import {getItemFilter, getItemRequest} from '../../redux/actions';
 import SearchCard from '../SearchCard/SearchCard';
 import Error from '../Error/Error';
 import styles from './SearchList.style';
 import NoContent from '../NoContent/NoContent';
 
-const SearchList = ({navigation, isLoaded}) => {
+const SearchList = ({navigation, isLoaded, searchDirected}) => {
   const dispatch = useDispatch();
 
   const items = useSelector(selectItems);
@@ -23,9 +23,14 @@ const SearchList = ({navigation, isLoaded}) => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
+  useEffect(() => {
+    if (searchDirected) {
+      dispatch(getItemFilter({query: searchDirected}));
+    }
+  }, [searchDirected]);
+
   React.useEffect(() => {
     dispatch(getItemRequest());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (error) {

@@ -1,5 +1,5 @@
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
-import React, {useState} from 'react';
+import {View, TouchableOpacity, Image, TextInput} from 'react-native';
+import React from 'react';
 import styles from './HeaderWBackButton.style';
 
 const HeaderWBackButton = ({navigation, pressOut, bordered}) => {
@@ -10,7 +10,7 @@ const HeaderWBackButton = ({navigation, pressOut, bordered}) => {
           resizeMode="cover"
           style={{
             height: 24,
-            width: 24,
+            width: 30,
           }}
           source={require('../../assets/images/back.png')}
         />
@@ -20,7 +20,8 @@ const HeaderWBackButton = ({navigation, pressOut, bordered}) => {
           autoFocus={false}
           onPressOut={pressOut}
           style={styles.input(bordered)}
-          placeholder="Ürün ara"
+          placeholder="Search products..."
+          onChangeText={val => navigation.navigate('Home', {search: val})}
         />
       </View>
     </View>

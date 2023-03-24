@@ -4,16 +4,16 @@ import styles from './Header.style';
 import React, {useEffect, useState} from 'react';
 import {getItemFilter} from '../../redux/actions';
 import {useDispatch} from 'react-redux';
+import {TIME_OUT} from '../../constants';
 
 type Props = {
-  isLoaded: boolean;
   setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  searchDirected: string;
 };
 
 const Header = (props: Props) => {
-  const {setIsLoaded} = props;
+  const {setIsLoaded, searchDirected} = props;
   const [searchText, setSearchText] = useState<string>('');
-  const TIME_OUT = 1200;
   const dispatch = useDispatch();
 
   // Debouncing search
@@ -27,9 +27,7 @@ const Header = (props: Props) => {
   }, [dispatch, searchText, setIsLoaded]);
 
   const handleChange = (val: string) => {
-    if (val.length !== 0) {
-      setSearchText(val);
-    }
+    setSearchText(val);
   };
 
   return (
@@ -38,7 +36,8 @@ const Header = (props: Props) => {
         <TextInput
           onChangeText={value => handleChange(value.trim())}
           style={styles.input}
-          placeholder="Ürün ara"
+          placeholder="Search products..."
+          defaultValue={searchDirected}
         />
       </View>
     </SafeAreaView>
