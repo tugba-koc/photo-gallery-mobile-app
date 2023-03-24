@@ -3,8 +3,13 @@ import React, {useState} from 'react';
 import {CATEGORIES} from '../../constants';
 import styles from './Categories.style';
 
+type ItmProps = {
+  item: {id: number; name: string};
+  index: string;
+};
+
 const Categories = () => {
-  const [pressed, setPressed] = useState<boolean>(false);
+  const [pressed, setPressed] = useState<string>('');
 
   return (
     <View style={styles.container}>
@@ -13,7 +18,7 @@ const Categories = () => {
         data={CATEGORIES}
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => item.id}
-        renderItem={({item, index}) => (
+        renderItem={({item, index}: ItmProps) => (
           <View>
             <Pressable
               onPress={() => setPressed(index)}

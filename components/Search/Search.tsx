@@ -22,7 +22,6 @@ const Search = ({navigation}) => {
           transparent={true}
           visible={isModalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
             setIsModalVisible(!isModalVisible);
           }}>
           <View style={styles.modal_content}>
@@ -63,7 +62,7 @@ const Search = ({navigation}) => {
               </Text>
             ) : null}
           </View>
-          {searchQueryList.slice(0, 5).map((el, index) => (
+          {searchQueryList.slice(0, 5).map((el: string, index: number) => (
             <View key={index} style={styles.item}>
               <Text
                 onPress={() =>
