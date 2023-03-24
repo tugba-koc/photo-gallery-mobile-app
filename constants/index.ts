@@ -19,3 +19,5 @@ export const DETAIL_IMAGES = [
 
 export const ITEM_DESC =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, orci ut mattis pellentesque, augue neque lobortis quam, eget euismod dui nisl ac felis. Proin vel leo sed massa molestie egestas. Nam mi quam, congue at commodo eu, mattis a ipsum. Curabitur placerat sem leo, malesuada aliquet lacus accumsan vel. Morbi id quam vel odio tempor bibendum sed sed augue. Sed eu blandit metus. Vivamus tempus sollicitudin eros id lacinia. Nulla feugiat mattis ipsum, in dignissim urna tempus vitae. Etiam quis massa nulla. Duis tempus interdum vestibulum. Sed eu velit id eros euismod placerat a et felis. Integer blandit nunc a dui cursus ultricies. In vel urna aliquet, auctor lectus a, auctor ex. Phasellus at rhoncus nisl. Nunc ultricies justo.';
+
+export const TIME_OUT = 1200;
