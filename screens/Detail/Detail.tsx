@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import React, {useState} from 'react';
@@ -15,10 +16,13 @@ import AddToCart from '../../components/AddToCart/AddToCart';
 import HeaderWBackButton from '../../components/HeaderWithBackButton/HeaderWBackButton';
 import Search from '../../components/Search/Search';
 
+const {width} = Dimensions.get('screen');
+
 const Detail = ({route, navigation}) => {
   const {cardItem} = route.params;
   const [readMore, setReadMore] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isShownDetailScreen, setIsShownDetailScreen] = useState(true);
 
   const pressOut = () => {
@@ -27,7 +31,7 @@ const Detail = ({route, navigation}) => {
 
   return (
     <SafeAreaView style={{height: '100%', backgroundColor: '#EAEAEA'}}>
-      <AddToCart price={cardItem.pwls} />
+      {isShownDetailScreen && <AddToCart price={cardItem.pwls} />}
       <ScrollView style={styles.container}>
         {/* Header */}
         <HeaderWBackButton
@@ -42,7 +46,6 @@ const Detail = ({route, navigation}) => {
                 position: 'relative',
                 marginLeft: 'auto',
                 marginRight: 20,
-                marginTop: 20,
               }}>
               <TouchableOpacity onPress={() => setIsLiked(!isLiked)}>
                 <Image
@@ -54,20 +57,51 @@ const Detail = ({route, navigation}) => {
                   source={
                     isLiked
                       ? require('../../assets/images/heart-full.png')
-                      : require('../../assets/images/heart-empty.png')
+                      : require('../../assets/images/heart-empty.jpeg')
                   }
                 />
               </TouchableOpacity>
             </View>
+            {/* Slider Start */}
             <FlatList
               style={{marginTop: 20}}
+              onScroll={e => {
+                const x = e.nativeEvent.contentOffset.x;
+                setCurrentIndex((x / width).toFixed(0));
+              }}
               pagingEnabled
               horizontal
+              showsHorizontalScrollIndicator={false}
               snapToAlignment="center"
               data={DETAIL_IMAGES}
               keyExtractor={item => item.id}
               renderItem={({item}) => <SlideItem img_url={item.url} />}
             />
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                width: width,
+                alignItems: 'center',
+              }}>
+              {DETAIL_IMAGES.map((dot, index) => {
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      width: Number(currentIndex) === index ? 10 : 8,
+                      height: Number(currentIndex) === index ? 10 : 8,
+                      borderRadius: 4,
+                      backgroundColor:
+                        Number(currentIndex) === index ? '#fa8c16' : 'grey',
+                      marginLeft: 5,
+                      marginTop: 14,
+                    }}
+                  />
+                );
+              })}
+            </View>
+            {/* Slider End */}
             <View style={styles.description}>
               <Text style={styles.title}>{cardItem.title}</Text>
               <View style={styles.main_description}>
@@ -92,6 +126,7 @@ const Detail = ({route, navigation}) => {
                 <Text style={styles.author}>
                   Seçili Satıcı: {cardItem.author_fullname}
                 </Text>
+                {/* Show Less / Read More */}
                 <View style={styles.item_description_wrapper}>
                   <Text style={styles.item_description}>
                     {readMore ? ITEM_DESC : ITEM_DESC.slice(0, 120) + '...'}
@@ -106,7 +141,7 @@ const Detail = ({route, navigation}) => {
             </View>
           </>
         ) : (
-          <Search />
+          <Search navigation={navigation} />
         )}
       </ScrollView>
     </SafeAreaView>
