@@ -20,6 +20,7 @@ export default StyleSheet.create({
   description: {
     padding: 6,
     paddingHorizontal: 20,
+    marginTop: 30,
   },
   title: {
     fontWeight: '500',
