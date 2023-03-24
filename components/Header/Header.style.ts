@@ -7,6 +7,7 @@ export default StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     padding: 14,
+    marginBottom: -20,
     borderRadius: 20,
   },
   search_section: {

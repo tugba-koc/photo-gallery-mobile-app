@@ -27,5 +27,8 @@ export default StyleSheet.create({
     color: '#fa8c16',
     fontWeight: '700',
     fontSize: 18,
+    backgroundColor: 'white',
+    padding: 12,
+    borderRadius: 6,
   },
 });

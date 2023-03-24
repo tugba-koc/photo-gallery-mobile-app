@@ -7,6 +7,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     columnGap: 14,
     paddingHorizontal: 20,
+    marginBottom: 20,
   },
   search_section: {
     flexDirection: 'row',

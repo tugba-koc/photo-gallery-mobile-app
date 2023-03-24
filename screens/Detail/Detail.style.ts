@@ -62,7 +62,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8,
-    marginBottom: 32,
+    marginBottom: 82,
   },
   read_more: {
     marginTop: 14,
