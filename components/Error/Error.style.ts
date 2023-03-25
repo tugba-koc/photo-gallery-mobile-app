@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     height: '100%',
     alignItems: 'center',
-    marginTop: '50%',
+    marginTop: '60%',
   },
   bold: {
     fontWeight: 'bold',
