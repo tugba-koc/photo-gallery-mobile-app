@@ -16,12 +16,16 @@ import AddToCart from '../../components/AddToCart/AddToCart';
 import HeaderWBackButton from '../../components/HeaderWithBackButton/HeaderWBackButton';
 import Search from '../../components/Search/Search';
 import {useRoute} from '@react-navigation/native';
+import {selectError} from '../../redux/selectors';
+import {useSelector} from 'react-redux';
+import Error from '../../components/Error/Error';
 
 const {width} = Dimensions.get('screen');
 
 const Detail = () => {
   const route = useRoute();
   const {cardItem} = route.params;
+  const error = useSelector(selectError);
   const [readMore, setReadMore] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<string>('');
@@ -37,7 +41,9 @@ const Detail = () => {
       <ScrollView>
         {/* Header */}
         <HeaderWBackButton pressOut={pressOut} bordered={isShownDetailScreen} />
-        {isShownDetailScreen ? (
+        {error ? (
+          <Error error={error} />
+        ) : isShownDetailScreen ? (
           <>
             <View
               style={{
