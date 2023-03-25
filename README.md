@@ -5,12 +5,12 @@ First, run the development server:
 - Clone the repository to your local machine.
 - Install dependencies by running `npm install`.
 - Run the app by running npm start and then either:
-- For iOS: `npm run ios`
-- For Android: `npm run android`
+- For iOS: `npx react-native run-ios`
+- For Android: `npx react-native run-android`
 
 <br>
 
-## Teckstack:
+## Techstack:
 
 - React Native
 - React Navigation
