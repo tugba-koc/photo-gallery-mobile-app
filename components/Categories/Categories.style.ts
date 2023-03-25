@@ -2,14 +2,15 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flexShrink: 1,
+    marginTop: 30,
   },
   wrapper: {
     margin: 8,
-    borderRadius: 10,
+    borderRadius: 18,
     backgroundColor: 'white',
     padding: 10,
-    borderWidth: 0.2,
+    borderWidth: 1,
+    borderColor: 'grey',
     height: 40,
   },
   grey: {

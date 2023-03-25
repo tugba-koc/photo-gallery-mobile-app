@@ -1,4 +1,11 @@
-import {View, Text, FlatList, Pressable, ListRenderItem} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  ListRenderItem,
+  Platform,
+} from 'react-native';
 import React, {useState} from 'react';
 import {CATEGORIES} from '../../constants';
 import styles from './Categories.style';
@@ -22,7 +29,7 @@ const Categories = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={Platform.OS === 'android' ? styles.container : ''}>
       <FlatList<ItemType>
         horizontal
         data={CATEGORIES}
