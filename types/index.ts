@@ -115,3 +115,8 @@ export interface Item {
   kind: string;
   data: IItem;
 }
+
+export type CategoryItemType = {
+  id: string;
+  name: string;
+};

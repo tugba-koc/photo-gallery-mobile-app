@@ -2,21 +2,12 @@ import {View, Text, FlatList, Pressable, ListRenderItem} from 'react-native';
 import React, {useState} from 'react';
 import {CATEGORIES} from '../../constants';
 import styles from './Categories.style';
-
-type RenderType = {
-  item: ItemType;
-  index: string;
-};
-
-type ItemType = {
-  id: string;
-  name: string;
-};
+import {CategoryItemType} from '../../types';
 
 const Categories = () => {
   const [pressed, setPressed] = useState<number>();
 
-  const renderItem: ListRenderItem<ItemType> = ({item, index}) => {
+  const renderItem: ListRenderItem<CategoryItemType> = ({item, index}) => {
     return (
       <View>
         <Pressable
