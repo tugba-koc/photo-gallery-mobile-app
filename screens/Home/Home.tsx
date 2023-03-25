@@ -5,9 +5,13 @@ import SearchList from '../../components/SearchList/SearchList';
 import styles from './Home.style';
 import Categories from '../../components/Categories/Categories';
 import {useRoute} from '@react-navigation/native';
+import Error from '../../components/Error/Error';
+import {useSelector} from 'react-redux';
+import {selectError} from '../../redux/selectors';
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const error = useSelector(selectError);
   const route = useRoute();
 
   let search;
@@ -18,8 +22,14 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Header searchDirected={search} setIsLoaded={setIsLoaded} />
-      <Categories />
-      <SearchList searchDirected={search} isLoaded={isLoaded} />
+      {error ? (
+        <Error error={error} />
+      ) : (
+        <>
+          <Categories />
+          <SearchList searchDirected={search} isLoaded={isLoaded} />
+        </>
+      )}
     </View>
   );
 };

@@ -71,8 +71,6 @@ export default StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  button_open: {},
-  button_close: {},
   text_style: {
     color: '#fa8c16',
     fontWeight: '500',

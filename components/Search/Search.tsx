@@ -36,12 +36,12 @@ const Search = () => {
               </Text>
               <View style={styles.button_container}>
                 <Pressable
-                  style={[styles.button, styles.button_close]}
+                  style={styles.button}
                   onPress={() => setIsModalVisible(!isModalVisible)}>
                   <Text style={styles.text_style}>CANCEL</Text>
                 </Pressable>
                 <Pressable
-                  style={[styles.button, styles.button_close]}
+                  style={styles.button}
                   onPress={() => {
                     dispatch<RemoveSearchQueryList>(removeSearchQueryList());
                     setIsModalVisible(!isModalVisible);

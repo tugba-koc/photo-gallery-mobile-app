@@ -2,7 +2,6 @@ import {View, FlatList, ActivityIndicator, ListRenderItem} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  selectError,
   selectFilteredItems,
   selectItems,
   selectLoading,
@@ -10,7 +9,6 @@ import {
 } from '../../redux/selectors';
 import {getItemFilter, getItemRequest} from '../../redux/actions';
 import SearchCard from '../SearchCard/SearchCard';
-import Error from '../Error/Error';
 import styles from './SearchList.style';
 import NoContent from '../NoContent/NoContent';
 import {IItem, Item} from '../../types';
@@ -28,7 +26,6 @@ const SearchList = ({isLoaded, searchDirected}: Props) => {
   const filteredItems = useSelector(selectFilteredItems);
   const searchQuery = useSelector(selectSearchQuery);
   const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
     if (searchDirected) {
@@ -44,9 +41,7 @@ const SearchList = ({isLoaded, searchDirected}: Props) => {
     return <SearchCard item={item.data} />;
   };
 
-  if (error) {
-    return <Error error={error} />;
-  } else if (searchQuery && filteredItems.length === 0) {
+  if (searchQuery && filteredItems.length === 0) {
     return <NoContent />;
   }
   return (
