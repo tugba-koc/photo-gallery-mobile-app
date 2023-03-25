@@ -16,7 +16,7 @@ PhotoGallery app'i 2 sayfadan oluşmaktadır: `Home` ve `Detail`.
 <br>
 
 ## Home Screen
-<img src="assets/ss/home.png" alt="Home screen" width="250" height="auto" title="home screen ss">
+<img src="assets/ss/main.png" alt="Home screen" width="250" height="auto" title="home screen ss">
 
 <br>
 
