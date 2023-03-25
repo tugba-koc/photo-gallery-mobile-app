@@ -1,5 +1,4 @@
 import {View, Image, Dimensions} from 'react-native';
-import styles from './SlideItem.style';
 import React from 'react';
 
 type Props = {

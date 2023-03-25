@@ -6,6 +6,7 @@ import {
   GetItemFailure,
   GetItemFilter,
   RemoveSearchQueryList,
+  GetItemFilterPayload,
 } from '../types';
 import {
   GET_ITEM_FAILURE,

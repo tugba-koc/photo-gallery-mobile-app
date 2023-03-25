@@ -3,9 +3,14 @@ import React, {useState} from 'react';
 import {CATEGORIES} from '../../constants';
 import styles from './Categories.style';
 
-type ItmProps = {
-  item: {id: number; name: string};
+type RenderType = {
+  item: Item;
   index: string;
+};
+
+type Item = {
+  id: number;
+  name: string;
 };
 
 const Categories = () => {
@@ -17,8 +22,8 @@ const Categories = () => {
         horizontal
         data={CATEGORIES}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item.id}
-        renderItem={({item, index}: ItmProps) => (
+        keyExtractor={(item: Item) => item.id}
+        renderItem={({item, index}: RenderType) => (
           <View>
             <Pressable
               onPress={() => setPressed(index)}

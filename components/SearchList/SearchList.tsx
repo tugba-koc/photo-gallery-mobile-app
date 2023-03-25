@@ -13,8 +13,14 @@ import SearchCard from '../SearchCard/SearchCard';
 import Error from '../Error/Error';
 import styles from './SearchList.style';
 import NoContent from '../NoContent/NoContent';
+import {IItem} from '../../types';
 
-const SearchList = ({navigation, isLoaded, searchDirected}) => {
+type Props = {
+  isLoaded: boolean;
+  searchDirected: string;
+};
+
+const SearchList = ({navigation, isLoaded, searchDirected}: Props) => {
   const dispatch = useDispatch();
 
   const items = useSelector(selectItems);
@@ -44,11 +50,11 @@ const SearchList = ({navigation, isLoaded, searchDirected}) => {
         <ActivityIndicator size="large" color="#fa8c16" />
       ) : (
         <FlatList
-          numColumns="2"
+          numColumns={2}
           // the design should be like search text is available or not
           data={searchQuery ? filteredItems : items}
-          keyExtractor={(item, index) => index}
-          renderItem={({item}) => (
+          keyExtractor={(item: IItem, index: number) => index}
+          renderItem={({item}: IItem) => (
             <SearchCard item={item.data} navigation={navigation} />
           )}
         />

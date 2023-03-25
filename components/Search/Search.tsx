@@ -76,7 +76,7 @@ const Search = ({navigation}) => {
           ))}
           {searchQueryList.length > 5 ? (
             <View style={styles.item}>
-              <Text style={styles.title}>...</Text>
+              <Text>...</Text>
             </View>
           ) : null}
           {!searchQueryList.length && (

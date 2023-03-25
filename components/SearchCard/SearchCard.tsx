@@ -37,7 +37,7 @@ const SearchCard = (props: Props) => {
         />
         <View style={styles.description}>
           <Text style={styles.title}>{item.title}</Text>
-          <View style={styles.main_description}>
+          <View>
             <View style={styles.sub_description}>
               <View style={styles.score_container}>
                 <Image

@@ -2,7 +2,12 @@ import {View, TouchableOpacity, Image, TextInput} from 'react-native';
 import React from 'react';
 import styles from './HeaderWBackButton.style';
 
-const HeaderWBackButton = ({navigation, pressOut, bordered}) => {
+type Props = {
+  pressOut: () => void;
+  bordered: boolean;
+};
+
+const HeaderWBackButton = ({navigation, pressOut, bordered}: Props) => {
   return (
     <View style={styles.header_container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
