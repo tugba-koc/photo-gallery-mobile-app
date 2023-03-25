@@ -67,9 +67,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
   },
   button: {
-    borderRadius: 20,
     padding: 10,
-    elevation: 2,
   },
   text_style: {
     color: '#fa8c16',
