@@ -8,6 +8,14 @@ First, run the development server:
 - For iOS: `npm run ios`
 - For Android: `npm run android`
 
+<br>
+
+## Teckstack:
+
+- React Native
+- React Navigation
+- Typescript
+- Redux Saga
 
 <br>
 
