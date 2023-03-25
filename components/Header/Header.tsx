@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {getItemFilter} from '../../redux/actions';
 import {useDispatch} from 'react-redux';
 import {TIME_OUT} from '../../constants';
+import {GetItemFilter} from '../../redux/types';
 
 type Props = {
   setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +21,7 @@ const Header = (props: Props) => {
   useEffect(() => {
     setIsLoaded(false);
     const debouncingSearch = setTimeout(() => {
-      dispatch(getItemFilter({query: searchText}));
+      dispatch<GetItemFilter>(getItemFilter({query: searchText}));
       setIsLoaded(true);
     }, TIME_OUT);
     return () => clearTimeout(debouncingSearch);

@@ -6,8 +6,10 @@ import {
   REMOVE_SEARCH_QUERY_LIST,
 } from '../actions/actionType';
 import {v4 as uuidv4} from 'uuid';
+import {IAction, IState} from '../types';
+import {AppState} from './root';
 
-const initialState = {
+const initialState: IState = {
   items: [],
   filteredItems: [],
   searchQuery: '',
@@ -16,7 +18,7 @@ const initialState = {
   error: null,
 };
 
-export default function items(state = initialState, action) {
+export default function items(state = initialState, action: IAction) {
   switch (action.type) {
     case GET_ITEM_REQUEST:
       return {
@@ -33,7 +35,7 @@ export default function items(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        error: action.error,
+        error: action.payload.error,
       };
     case GET_ITEM_FILTER:
       return {
@@ -58,8 +60,8 @@ export default function items(state = initialState, action) {
 }
 
 // filter items sccording to its id.
-export const selectLastSearchItemsWithText = state =>
+export const selectLastSearchItemsWithText = (state: AppState) =>
   state.item?.searchQueryList?.filter(
-    (item, index) =>
+    (item: string, index: number) =>
       item !== '' && state.item?.searchQueryList.indexOf(item) === index,
   );

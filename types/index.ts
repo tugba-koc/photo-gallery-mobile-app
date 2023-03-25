@@ -110,3 +110,8 @@ export interface IItem {
   media: null;
   is_video: boolean;
 }
+
+export interface Item {
+  kind: string;
+  data: IItem;
+}

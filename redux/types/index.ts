@@ -122,6 +122,22 @@ export interface Item {
   };
 }
 
+export interface IState {
+  items: Array<Item>;
+  filteredItems: Array<Item>;
+  searchQuery: string;
+  searchQueryList: Array<string>;
+  loading: boolean;
+  error: null | string;
+}
+
+export type IAction =
+  | GetItemRequest
+  | GetItemSuccess
+  | GetItemFailure
+  | GetItemFilter
+  | RemoveSearchQueryList;
+
 export interface GetItemSuccessPayload {
   items: Item[];
 }

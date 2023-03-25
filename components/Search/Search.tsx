@@ -1,12 +1,16 @@
-import {View, Text, Modal, Button, Pressable} from 'react-native';
+import {View, Text, Modal, Pressable} from 'react-native';
 import styles from './Search.style';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectLastSearchItemsWithText} from '../../redux/reducers/items';
 import {removeSearchQueryList} from '../../redux/actions';
+import {useNavigation} from '@react-navigation/native';
+import {RemoveSearchQueryList} from '../../redux/types';
 
-const Search = ({navigation}) => {
+const Search = () => {
+  const navigation = useNavigation();
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dispatch = useDispatch();
   const searchQueryList = useSelector(state =>
@@ -39,7 +43,7 @@ const Search = ({navigation}) => {
                 <Pressable
                   style={[styles.button, styles.button_close]}
                   onPress={() => {
-                    dispatch(removeSearchQueryList());
+                    dispatch<RemoveSearchQueryList>(removeSearchQueryList());
                     setIsModalVisible(!isModalVisible);
                   }}>
                   <Text style={styles.text_style}>REMOVE ALL</Text>

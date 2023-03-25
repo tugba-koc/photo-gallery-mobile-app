@@ -2,6 +2,7 @@ import {Dimensions, Image, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {IItem} from '../../types';
 import styles from './SearchCard.style';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   item: IItem;
@@ -10,7 +11,8 @@ type Props = {
 const dimension = Dimensions.get('screen');
 
 const SearchCard = (props: Props) => {
-  const {item, navigation} = props;
+  const {item} = props;
+  const navigation = useNavigation();
 
   return (
     <View style={styles.image_container_style}>

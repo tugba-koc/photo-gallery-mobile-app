@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  input: bordered => ({
+  input: (bordered: boolean) => ({
     color: 'black',
     fontWeight: '600',
     width: '100%',

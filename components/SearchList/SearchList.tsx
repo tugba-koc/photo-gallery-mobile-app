@@ -1,5 +1,5 @@
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {View, FlatList, ActivityIndicator, ListRenderItem} from 'react-native';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   selectError,
@@ -13,14 +13,15 @@ import SearchCard from '../SearchCard/SearchCard';
 import Error from '../Error/Error';
 import styles from './SearchList.style';
 import NoContent from '../NoContent/NoContent';
-import {IItem} from '../../types';
+import {IItem, Item} from '../../types';
+import {GetItemFilter, GetItemRequest} from '../../redux/types';
 
 type Props = {
   isLoaded: boolean;
   searchDirected: string;
 };
 
-const SearchList = ({navigation, isLoaded, searchDirected}: Props) => {
+const SearchList = ({isLoaded, searchDirected}: Props) => {
   const dispatch = useDispatch();
 
   const items = useSelector(selectItems);
@@ -31,13 +32,17 @@ const SearchList = ({navigation, isLoaded, searchDirected}: Props) => {
 
   useEffect(() => {
     if (searchDirected) {
-      dispatch(getItemFilter({query: searchDirected}));
+      dispatch<GetItemFilter>(getItemFilter({query: searchDirected}));
     }
   }, [searchDirected]);
 
   React.useEffect(() => {
-    dispatch(getItemRequest());
+    dispatch<GetItemRequest>(getItemRequest());
   }, []);
+
+  const renderItem: ListRenderItem<Item> = ({item}) => {
+    return <SearchCard item={item.data} />;
+  };
 
   if (error) {
     return <Error error={error} />;
@@ -53,10 +58,8 @@ const SearchList = ({navigation, isLoaded, searchDirected}: Props) => {
           numColumns={2}
           // the design should be like search text is available or not
           data={searchQuery ? filteredItems : items}
-          keyExtractor={(item: IItem, index: number) => index}
-          renderItem={({item}: IItem) => (
-            <SearchCard item={item.data} navigation={navigation} />
-          )}
+          keyExtractor={(item: IItem, index: number) => index.toString()}
+          renderItem={renderItem}
         />
       )}
     </View>

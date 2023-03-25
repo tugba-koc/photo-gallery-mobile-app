@@ -24,47 +24,47 @@ export const TIME_OUT = 1200;
 
 export const CATEGORIES = [
   {
-    id: 1,
+    id: '1',
     name: 'Women',
   },
   {
-    id: 2,
+    id: '2',
     name: 'Men',
   },
   {
-    id: 3,
+    id: '3',
     name: 'Kid',
   },
   {
-    id: 4,
+    id: '4',
     name: 'Young',
   },
   {
-    id: 5,
+    id: '5',
     name: 'Old',
   },
   {
-    id: 6,
+    id: '6',
     name: 'Run',
   },
   {
-    id: 7,
+    id: '7',
     name: 'Walk',
   },
   {
-    id: 8,
+    id: '8',
     name: 'Mountain',
   },
   {
-    id: 9,
+    id: '9',
     name: 'Summer',
   },
   {
-    id: 10,
+    id: '10',
     name: 'Winter',
   },
   {
-    id: 11,
+    id: '11',
     name: 'Baby',
   },
 ];

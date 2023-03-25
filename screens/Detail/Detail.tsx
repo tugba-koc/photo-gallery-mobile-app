@@ -15,14 +15,16 @@ import SlideItem from '../../components/SlideItem/SlideItem';
 import AddToCart from '../../components/AddToCart/AddToCart';
 import HeaderWBackButton from '../../components/HeaderWithBackButton/HeaderWBackButton';
 import Search from '../../components/Search/Search';
+import {useRoute} from '@react-navigation/native';
 
 const {width} = Dimensions.get('screen');
 
-const Detail = ({route, navigation}) => {
+const Detail = () => {
+  const route = useRoute();
   const {cardItem} = route.params;
   const [readMore, setReadMore] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState<string>('');
   const [isShownDetailScreen, setIsShownDetailScreen] = useState<boolean>(true);
 
   const pressOut = () => {
@@ -32,13 +34,9 @@ const Detail = ({route, navigation}) => {
   return (
     <SafeAreaView style={{height: '100%', backgroundColor: '#EAEAEA'}}>
       {isShownDetailScreen && <AddToCart price={cardItem.pwls} />}
-      <ScrollView style={styles.container}>
+      <ScrollView>
         {/* Header */}
-        <HeaderWBackButton
-          pressOut={pressOut}
-          bordered={isShownDetailScreen}
-          navigation={navigation}
-        />
+        <HeaderWBackButton pressOut={pressOut} bordered={isShownDetailScreen} />
         {isShownDetailScreen ? (
           <>
             <View
@@ -104,7 +102,7 @@ const Detail = ({route, navigation}) => {
             {/* Slider End */}
             <View style={styles.description}>
               <Text style={styles.title}>{cardItem.title}</Text>
-              <View style={styles.main_description}>
+              <View>
                 <View style={styles.sub_description}>
                   <View style={styles.score_container}>
                     <Image
@@ -128,7 +126,7 @@ const Detail = ({route, navigation}) => {
                 </Text>
                 {/* Show Less / Read More */}
                 <View style={styles.item_description_wrapper}>
-                  <Text style={styles.item_description}>
+                  <Text>
                     {readMore ? ITEM_DESC : ITEM_DESC.slice(0, 120) + '...'}
                   </Text>
                   <Text
@@ -141,7 +139,7 @@ const Detail = ({route, navigation}) => {
             </View>
           </>
         ) : (
-          <Search navigation={navigation} />
+          <Search />
         )}
       </ScrollView>
     </SafeAreaView>
